@@ -4,7 +4,7 @@
 
 Welcome to my hands-on learning repository! This space reflects my continuous journey to **learn, revise, and apply** Python programming, Data Science, and Machine Learning concepts through structured modules and real-world practice.
 
-> 🧠 **Objective**: Strengthen my fundamentals, stay up to date with best practices, and share learnings regularly on [LinkedIn](#) to help and inspire others in the community.
+> 🧠 **Objective**: Strengthen my fundamentals, stay up to date with best practices, and share learnings regularly on [LinkedIn](https://www.linkedin.com/in/gauravkkaushik/) to help and inspire others in the community.
 
 ---
 
@@ -74,6 +74,81 @@ This section brings everything together—from deployment to modern NLP and Deep
 - `Complete NLP For Machine Learning`
 - `Deep Learning`
 
+### 🧠 Generative AI (GenAI)
+
+This section is dedicated to my exploration and experimentation with Generative AI—focusing on foundational concepts, popular libraries, and building real-world applications using large language models (LLMs).
+
+> 🚀 Goal: Learn by building. Apply LLM capabilities in real-world scenarios, and share practical implementations that others can learn from.
+
+---
+
+### 📚 Foundations
+
+- Introduction to Generative AI
+- Overview of LLMs: GPT, BERT, Transformers
+- Attention Mechanism Simplified
+- Prompt Engineering Techniques  
+  (zero-shot, few-shot, chain-of-thought)
+
+---
+
+## 🛠 Core Tools & Frameworks
+
+- OpenAI API (ChatGPT, GPT-4, Embeddings)
+- Hugging Face Transformers
+- LangChain (Chains, Agents, Memory, Tools)
+- LlamaIndex (Data connectors, Indexing, Query engines)
+- Vector Stores: FAISS, Chroma, Pinecone
+- PromptLayer (Prompt observability & tracking)
+
+---
+
+## 🔄 Retrieval Augmented Generation (RAG)
+
+- What is RAG and Why It Matters
+- Document Chunking Strategies
+- Embedding Models (OpenAI, SentenceTransformers, etc.)
+- Creating and Querying Vector Databases
+- Building Q&A over Documents using RAG
+- Implementing RAG with LangChain
+
+---
+
+## 💬 Conversational AI
+
+- Building LLM-Powered Chatbots
+- Managing Context with Memory Modules
+- LangChain Agents for Dynamic Conversations
+- Streamlit Frontends for Chatbots
+- Adding Tool Usage & API Calls in Chatbots
+
+---
+
+## 📊 Enterprise GenAI Applications
+
+- Chat with PDF / CSV / Knowledge Base
+- Auto-generated Reports & Summaries using LLMs
+- Intelligent Lead Qualification Assistant
+- Custom Domain-Specific GPT Apps
+- LLM-powered FAQ & Customer Support Bots
+
+---
+
+## 🧪 Example Use Cases
+
+- 🗃️ **Internal Document Q&A with RAG**  
+  Query internal policy or knowledge base docs using vector embeddings and retrieval.
+
+- 🤖 **Chatbot**  
+  Engage users in conversation to identify qualified leads using business rules + LLMs.
+
+- 🔐 **Private GPT using LangChain + Chroma**  
+  A secure, offline assistant mimicking ChatGPT functionality for enterprise settings.
+
+- 🧾 **Policy Summarization and Explanation App**  
+  Converts long policies into simple summaries and allows Q&A with OpenAI.
+
+---
 
 ---
 
@@ -88,7 +163,7 @@ This section brings everything together—from deployment to modern NLP and Deep
 
 ## 🤝 Connect with Me
 
-Feel free to follow or connect with me on [LinkedIn](#) where I actively share my learnings, mini-projects, and community insights.
+Feel free to follow or connect with me on [LinkedIn](https://www.linkedin.com/in/gauravkkaushik/) where I actively share my learnings, mini-projects, and community insights.
 
 ---
 

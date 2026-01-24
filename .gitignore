@@ -29,3 +29,5 @@ build/
 
 # Environment files
 .env
+python for data science/multiprocessing_and_multithreading/housing_large.csv
+python for data science/multiprocessing_and_multithreading/spotify.csv

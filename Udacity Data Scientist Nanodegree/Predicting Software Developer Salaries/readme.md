@@ -6,7 +6,7 @@ This project is part of the **Udacity Data Scientist Nanodegree**. It utilizes t
 
 
 ## Blog Post
-A detailed write-up of the findings and technical approach can be found here: [Insert your Medium/Blog Link Here]
+A write-up of the findings and technical approach can be found here: [\[Medium/Blog Link Here\]](https://medium.com/@gaurav.k.kaushik/show-me-the-money-what-truly-drives-developer-salaries-in-2026-c45ae50a2aae?postPublishedType=initial)
 
 ---
 

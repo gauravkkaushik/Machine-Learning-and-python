@@ -54,8 +54,9 @@ I used `GridSearchCV` with **multiprocessing** to optimize:
 * `min_samples_split`
 
 ### Model Performance
-* **R² Score:** [Insert your R2 score, e.g., 0.62]
-* **Mean Absolute Error (MAE):** [Insert your MAE, e.g., $18,400]
+* **R² Score:** 0.528
+* **Mean Absolute Error (MAE):** $27,264.87
+
 
 ---
 

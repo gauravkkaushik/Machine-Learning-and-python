@@ -1,7 +1,7 @@
 """Core profiling engine for the dataudit package."""
 
 from pathlib import Path
-from typing import Any, List, Union
+from typing import Any, Dict, List, Union
 
 import numpy as np
 import pandas as pd
@@ -261,6 +261,81 @@ class Profiler:
 
         return pd.DataFrame(profiled_rows, columns=columns)
 
+    def profile_red_flags(self) -> pd.DataFrame:
+        """
+        Identify feature-level data quality red flags.
+
+        Rules include:
+            - Numerical outliers detected by the 1.5 * IQR rule
+            - High cardinality categorical features (> 50 unique values)
+            - Features with only 1 unique non-null value
+            - Features where all values are null
+
+        Returns:
+            DataFrame with columns: Feature, Comments
+        """
+        columns = ["Feature", "Comments"]
+
+        if self.df.empty or self.df.shape[1] == 0:
+            return pd.DataFrame(
+                [{"Feature": "N/A", "Comments": "Dataset is empty; no red-flag checks were run."}],
+                columns=columns,
+            )
+
+        total_rows = int(self.df.shape[0])
+        flagged_features: Dict[str, List[str]] = {}
+
+        for col in self.df.columns:
+            series = self.df[col]
+            comments: List[str] = []
+            unique_non_null = int(series.nunique(dropna=True))
+
+            if unique_non_null == 0:
+                comments.append("All values are null (0 unique non-null values).")
+            elif unique_non_null == 1:
+                comments.append("Only 1 unique non-null value; potential constant feature.")
+
+            if col in self.num_cols:
+                non_null = series.dropna()
+                if not non_null.empty:
+                    q1 = non_null.quantile(0.25)
+                    q3 = non_null.quantile(0.75)
+                    iqr = q3 - q1
+                    lower_bound = q1 - (1.5 * iqr)
+                    upper_bound = q3 + (1.5 * iqr)
+                    outlier_count = int(
+                        ((non_null < lower_bound) | (non_null > upper_bound)).sum()
+                    )
+                    if outlier_count > 0:
+                        outlier_pct = self._safe_percentage(outlier_count, total_rows)
+                        comments.append(
+                            "Outliers detected: {0} values outside 1.5*IQR ({1:.2f}% of rows).".format(
+                                outlier_count, outlier_pct
+                            )
+                        )
+
+            if col in self.cat_cols and unique_non_null > 50:
+                comments.append(
+                    "High cardinality: {0} unique values (threshold > 50).".format(
+                        unique_non_null
+                    )
+                )
+
+            if comments:
+                flagged_features[col] = comments
+
+        if not flagged_features:
+            return pd.DataFrame(
+                [{"Feature": "None", "Comments": "No red flags detected by current rules."}],
+                columns=columns,
+            )
+
+        rows = []
+        for feature, comments in flagged_features.items():
+            rows.append({"Feature": feature, "Comments": "; ".join(comments)})
+
+        return pd.DataFrame(rows, columns=columns)
+
     def export_report(self, output_filename: str = "Data_Audit_Report.xlsx") -> str:
         """
         Export a multi-sheet Excel data audit report.
@@ -270,10 +345,12 @@ class Profiler:
             2) Numerical Profile
             3) Categorical Profile
             4) Correlations
+            5) Red Flags
         """
         overview_df = self.get_overview()
         numerical_df = self.profile_numerical()
         categorical_df = self.profile_categorical()
+        red_flags_df = self.profile_red_flags()
 
         if self.num_cols:
             correlation_df = self.df[self.num_cols].corr(method="pearson")
@@ -295,5 +372,6 @@ class Profiler:
 
             corr_index = "Info" not in correlation_df.columns
             correlation_df.to_excel(writer, sheet_name="Correlations", index=corr_index)
+            red_flags_df.to_excel(writer, sheet_name="Red Flags", index=False)
 
         return output_filename

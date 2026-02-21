@@ -1,10 +1,10 @@
-# 🎓 Tutorial: Mastering Python Virtual Environments
+#  Tutorial: Mastering Python Virtual Environments
 
 This project is a practical guide to **Code Reproducibility**, developed as part of the **Udacity Data Scientist Nanodegree**. You will learn why virtual environments are the industry standard and how to manage them on Windows.
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 1. [What is a Virtual Environment?](#1-what-is-a-virtual-environment)
 2. [Why Use Environments?](#2-why-use-environments)
 3. [Step-by-Step Setup](#3-step-by-step-setup)
@@ -36,7 +36,7 @@ In Data Science, environments are essential for:
 
 In this project, we separate the **Art** logic from the **Quotes** logic to keep our dependencies lean.
 
-### 🎨 Part A: The Art Environment (`art_env`)
+###  Part A: The Art Environment (`art_env`)
 Used for `art.py`. Focuses on image processing and visualization.
 
 1.  **Navigate to the project:**

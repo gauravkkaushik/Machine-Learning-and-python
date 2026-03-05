@@ -1,23 +1,3 @@
-# from fasthtml.common import *
-# from src import queries
-
-
-# app = FastHTML()
-
-# @app.route('/')
-# def get():
-#     return 'Hello World!'
-
-
-# @app.route('/speaker/{id}')
-# def get(id:int = None,act:int = None, scene:int=None ):
-#     df = queries.speakers(speaker_id=id, act = act, scene = scene)
-#     json = df.to_dict(orient='records')
-#     return JSONResponse(json)
-
-
-# serve()
-
 
 # Import all from fasthtml.common
 from fasthtml.common import *
@@ -29,7 +9,7 @@ import pandas as pd
 app, route = fast_app()
 
 # Using pandas, read in he 'ds_event.csv' file
-df = pd.read_csv('Udacity Data Scientist Nanodegree/data_science_dashboards/01_A_SIMPLE_API/ds_events.csv')
+df = pd.read_csv('ds_events.csv')
 
 # Define a route for the landing page
 # that uses a `get` method

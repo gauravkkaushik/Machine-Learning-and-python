@@ -127,46 +127,6 @@ plt.tight_layout()
 plt.savefig(os.path.join(PATHS["output"], "feature_importance.png"))
 plt.close()
 
-# ---------------------------------------------------------
-# 5. PDPBOX VISUALIZATION (Fixing n_classes error)
-# ---------------------------------------------------------
-
-
-print("Generating PDPbox plots for top 20 features...")
-
-# 1. Transform the training data for the plotter
-X_train_transformed = best_model.named_steps['preprocessor'].transform(X_train)
-X_train_df = pd.DataFrame(X_train_transformed, columns=all_features)
-
-# 2. Extract the underlying regressor (XGBoost) from the Target Wrapper
-raw_model = best_model.named_steps['model'].regressor_
-
-# 3. Iterate through top 20 features
-for feature in feat_imp.head(20).index:
-    try:
-        # Use the high-level pdp_isolate function
-        pdp_isolate_obj = pdp.pdp_isolate(
-            model=raw_model,
-            dataset=X_train_df,
-            model_features=all_features,
-            feature=feature
-        )
-        
-        # 
-        fig, axes = pdp.pdp_plot(
-            pdp_isolate_out=pdp_isolate_obj, 
-            feature_name=feature,
-            plot_pts_dist=True,
-            cluster=True,
-            n_cluster_centers=10
-        )
-        
-        # Save to output folder
-        plt.savefig(os.path.join(PATHS["output"], f"pdp_{feature.replace(' ', '_')}.png"))
-        plt.close()
-        
-    except Exception as e:
-        print(f"Skipping PDP for {feature}: {e}")
 
 # ---------------------------------------------------------
 # 6. SAVE MODEL
